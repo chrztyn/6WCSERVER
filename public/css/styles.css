@@ -46,3 +46,15 @@ input[type="submit"]:hover {
 br {
   margin-top: 10px;
 }
+
+h1 {
+color: #af4c8c;
+margin-top: 50px;
+font-size: 2.5rem;
+}
+
+p {
+color: #555;
+font-size: 1.2rem;
+margin-top: 10px;
+}
