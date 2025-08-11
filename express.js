@@ -1,8 +1,10 @@
 import express from 'express';
 const __dirname = import.meta.dirname;
+import bodyParser from 'body-parser';
 
 const app = express();
 app.use(express.static('public'));
+const urlEncoderParser = bodyParser.urlencoded({extended: false});
 
 //Page Routes
 app.get('/', (req, res) => {res.sendFile(__dirname + '/pages/home.html');});
@@ -32,16 +34,16 @@ app.get('/getStudent', (req,res) => {
     res.end(`Received Data: ${JSON.stringify(response)}`);
 })
 
-app.get('/getAdmin', (req,res) => {
+app.post('/postAdmin', urlEncoderParser, (req,res) => {
     const response = {
-        adminID : req.query.adminID,
-        firstName : req.query.firstName,
-        lastName : req.query.lastName,
-        department: req.query.department,
-    }
+        adminID : req.body.adminID,
+        firstName : req.body.firstName,
+        lastName : req.body.lastName,
+        department: req.body.department,
+    };
 
-    console.log("Response is: ", response);
-    res.end(`Received Data: ${JSON.stringify(response)}`);
+    console.log("Admin Data: ", response);
+    res.end(JSON.stringify(response));
 })
 
 app.get('/user', (req, res) => {
